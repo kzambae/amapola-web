@@ -78,7 +78,7 @@
 
     <section class="releases">
 
-      <article class="card">
+      <article class="card js-reveal">
         <div class="card-media">
           <img src="/assets/puntero-digital.webp" alt="Puntero Digital">
           <span class="card-index">Nº 01</span>
@@ -93,7 +93,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card js-reveal">
         <div class="card-media">
           <img src="/assets/whereubeen.webp" alt="whereubeen?">
           <span class="card-index">Nº 02</span>
@@ -114,7 +114,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card js-reveal">
         <div class="card-media">
           <img src="/assets/9018.webp" alt="noventadieciocho">
           <span class="card-index">Nº 03</span>
@@ -131,7 +131,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card js-reveal">
         <div class="card-media">
           <img src="/assets/svvtchbld.webp" alt="svvtchbld">
           <span class="card-index">Nº 04</span>
@@ -158,7 +158,7 @@
     </div>
 
     <section class="news-band">
-      <div class="terminal">
+      <div class="terminal js-reveal">
         <div class="terminal-bar">
           <span>AMAPOLA // BOLETÍN</span>
           <span class="terminal-bar-meta">SIN SPAM</span>
@@ -177,10 +177,10 @@
     </section>
 
     <section class="stubs">
-      <a class="stub" href="/music">MÚSICA <span>CATÁLOGO COMPLETO</span></a>
-      <a class="stub" href="/visuals">GALERIA 43 <span>ARCHIVO VISUAL</span></a>
-      <a class="stub" href="/archive">ARCHIVO <span>PRONTO</span></a>
-      <a class="stub" href="/shop">TIENDA <span>PRONTO</span></a>
+      <a class="stub js-reveal" href="/music">MÚSICA <span>CATÁLOGO COMPLETO</span></a>
+      <a class="stub js-reveal" href="/visuals">GALERIA 43 <span>ARCHIVO VISUAL</span></a>
+      <a class="stub js-reveal" href="/archive">ARCHIVO <span>PRONTO</span></a>
+      <a class="stub js-reveal" href="/shop">TIENDA <span>PRONTO</span></a>
     </section>
 
     <footer class="foot">
@@ -189,36 +189,7 @@
 
   </div>
 
-<script>
-  (function () {
-    var body = document.body;
-    var enterBtn = document.getElementById('enterBtn');
-    if (enterBtn) {
-      enterBtn.addEventListener('click', function () {
-        body.setAttribute('data-splash', 'off');
-      });
-    }
-    document.querySelectorAll('.sound-toggle').forEach(function (btn) {
-      btn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        var on = btn.getAttribute('aria-pressed') === 'true';
-        document.querySelectorAll('.sound-toggle').forEach(function (b) {
-          b.setAttribute('aria-pressed', on ? 'false' : 'true');
-        });
-      });
-    });
-    var form = document.getElementById('newsForm');
-    var status = document.getElementById('formStatus');
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        status.textContent = 'TRANSMISIÓN RECIBIDA.';
-        status.setAttribute('data-ok', '1');
-        form.reset();
-      });
-    }
-  })();
-</script>
+<script src="/site.js" defer></script>
 
 </body>
 </html>
