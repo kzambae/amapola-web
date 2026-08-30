@@ -2,23 +2,53 @@
   var body = document.body;
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ── SFX manager — short UI blips, off by default, toggled via .sound-toggle */
+  var SFX_KEY = 'amapola-sound';
+  var soundOn = false;
+  try { soundOn = localStorage.getItem(SFX_KEY) === '1'; } catch (e) {}
+  var sfxFiles = { hover: '/assets/audio/hover.wav', click: '/assets/audio/click.wav', send: '/assets/audio/send.wav', boot: '/assets/audio/boot.wav' };
+  var sfxCache = {};
+  function playSfx(name) {
+    if (!soundOn) return;
+    try {
+      var base = sfxCache[name] || (sfxCache[name] = new Audio(sfxFiles[name]));
+      var el = base.cloneNode(true);
+      el.volume = 0.5;
+      el.play().catch(function () {});
+    } catch (e) {}
+  }
+  function setSoundState(on) {
+    soundOn = on;
+    try { localStorage.setItem(SFX_KEY, on ? '1' : '0'); } catch (e) {}
+    document.querySelectorAll('.sound-toggle').forEach(function (b) {
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+  setSoundState(soundOn);
+
   /* ── Splash gate ─────────────────────────────────────────────────── */
   var enterBtn = document.getElementById('enterBtn');
   if (enterBtn) {
     enterBtn.addEventListener('click', function () {
       body.setAttribute('data-splash', 'off');
+      playSfx('boot');
     });
   }
 
-  /* ── Sound toggle (visual state only until an audio track is wired) */
+  /* ── Sound toggle ─────────────────────────────────────────────────── */
   document.querySelectorAll('.sound-toggle').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
-      var on = btn.getAttribute('aria-pressed') === 'true';
-      document.querySelectorAll('.sound-toggle').forEach(function (b) {
-        b.setAttribute('aria-pressed', on ? 'false' : 'true');
-      });
+      setSoundState(btn.getAttribute('aria-pressed') !== 'true');
     });
+  });
+
+  /* ── Hover / click SFX on interactive elements ───────────────────── */
+  document.querySelectorAll('.card, .gallery-tile, .platform-link, .stub, .card-links a, .topnav a').forEach(function (el) {
+    el.addEventListener('mouseenter', function () { playSfx('hover'); });
+  });
+  document.querySelectorAll('.enter-btn, .platform-link, .card-links a, .stub, .soon-cta a').forEach(function (el) {
+    el.addEventListener('click', function () { playSfx('click'); });
   });
 
   /* ── Newsletter form ─────────────────────────────────────────────── */
@@ -29,6 +59,7 @@
       e.preventDefault();
       status.textContent = 'TRANSMISIÓN RECIBIDA.';
       status.setAttribute('data-ok', '1');
+      playSfx('send');
       form.reset();
     });
   }
