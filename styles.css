@@ -40,8 +40,11 @@
   --line-control: rgba(180,200,180,0.48);
   --line-control-hover: rgba(180,200,180,0.72);
   --text:      #ecf0ea;
-  --text-mute: rgba(236,240,234,0.62);
-  --text-dim:  rgba(236,240,234,0.50);
+  /* La pila de texturas se come ~1.5x del contraste nominal, así que estos
+     alfas están calibrados sobre el render, no sobre el papel: 0.66 entrega
+     4.64:1 y 0.80 entrega 7.03:1 medidos en píxeles. Ver DESIGN.md §2. */
+  --text-mute: rgba(236,240,234,0.80);
+  --text-dim:  rgba(236,240,234,0.66);
 
   /* Glow phosphor CRT */
   --glow-strong: 0 0 1px rgba(236,240,234,0.9), 0 0 14px rgba(200,230,210,0.6), 0 0 36px rgba(140,200,165,0.38), 0 0 72px rgba(80,160,110,0.2);

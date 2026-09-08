@@ -4,9 +4,20 @@ Documento de sistema de diseño. Describe **lo que el sitio ya es**, no lo
 que podría ser. Si vas a agregar una página o un componente, esto manda:
 la coherencia importa más que la idea nueva.
 
-Todos los ratios de contraste de este documento están **medidos sobre el
-render**, no estimados: se calculan componiendo el color con su alfa
-sobre `--bg` y aplicando la fórmula de WCAG 2.1.
+Los ratios de este documento vienen en dos columnas y **no son lo mismo**:
+
+- **Nominal** es el cálculo de papel: el color compuesto con su alfa sobre
+  `--bg`, con la fórmula de WCAG 2.1. Es lo que reporta axe o Lighthouse.
+- **Render** es lo que llega al ojo: medido en píxeles de una captura a 4x,
+  pico del glifo contra el percentil 20 del fondo.
+
+La diferencia importa porque **la pila de texturas (§6) se come alrededor
+de 1.5x del contraste**: multiply oscurece, y a 9–11px casi ningún píxel
+alcanza el color nominal. Un token que en el papel da 4.73:1 entrega 3.17:1
+en pantalla —o sea, reprueba AA aunque el verificador diga que pasa. **Los
+alfas de esta paleta están calibrados sobre la columna de render.** Si
+cambias un color de texto, vuelve a medirlo en píxeles; el cálculo
+analítico va a mentirte hacia arriba.
 
 ---
 
@@ -31,19 +42,19 @@ Tres reglas de humor:
 
 Todo vive en `:root` de `styles.css`.
 
-| Token | Valor | Para qué | Contraste |
-|---|---|---|---|
-| `--bg` | `#020403` | Fondo de página | — |
-| `--bg-2` | `#060807` | Terminales, superficies elevadas | — |
-| `--bg-card` | `#080b09` | Interior de tarjeta | — |
-| `--text` | `#ecf0ea` | Titulares y texto principal | **17.84:1** |
-| `--text-mute` | `rgba(236,240,234,0.62)` | Cuerpo, metadatos | **6.87:1** |
-| `--text-dim` | `rgba(236,240,234,0.50)` | Texto secundario, rótulos | **4.73:1** |
-| `--green-2` | `#6a8c79` | Acento, éxito | **5.52:1** |
-| `--line` | `rgba(180,200,180,0.10)` | Separadores **decorativos** | 1.15:1 |
-| `--line-2` | `rgba(180,200,180,0.22)` | Marcos **decorativos** | 1.50:1 |
-| `--line-control` | `rgba(180,200,180,0.48)` | Contorno de **control** | **3.22:1** |
-| `--line-control-hover` | `rgba(180,200,180,0.72)` | Control en hover / foco | **6.19:1** |
+| Token | Valor | Para qué | Nominal | Render |
+|---|---|---|---|---|
+| `--bg` | `#020403` | Fondo de página | — | — |
+| `--bg-2` | `#060807` | Terminales, superficies elevadas | — | — |
+| `--bg-card` | `#080b09` | Interior de tarjeta | — | — |
+| `--text` | `#ecf0ea` | Titulares y texto principal | 17.84:1 | **10.45:1** |
+| `--text-mute` | `rgba(236,240,234,0.80)` | Cuerpo, metadatos | 11.28:1 | **5.65–7.12:1** |
+| `--text-dim` | `rgba(236,240,234,0.66)` | Texto secundario, rótulos | 7.75:1 | **4.64:1** |
+| `--green-2` | `#6a8c79` | Acento, éxito | 5.52:1 | — |
+| `--line` | `rgba(180,200,180,0.10)` | Separadores **decorativos** | 1.15:1 | — |
+| `--line-2` | `rgba(180,200,180,0.22)` | Marcos **decorativos** | 1.50:1 | — |
+| `--line-control` | `rgba(180,200,180,0.48)` | Contorno de **control** | **3.22:1** | — |
+| `--line-control-hover` | `rgba(180,200,180,0.72)` | Control en hover / foco | 6.19:1 | — |
 
 **La distinción entre `--line-2` y `--line-control` no es cosmética.**
 WCAG 1.4.11 pide 3.0:1 para el contorno que permite *identificar un
@@ -58,9 +69,13 @@ tocas su `:hover`, acabas con un botón que se *apaga* al pasar el cursor.
 Por eso existe `--line-control-hover` y por eso hover y foco siempre van
 por encima de `--line-control`, no por debajo.
 
-`--text-dim` es el piso del texto legible: **4.73:1**, apenas por encima
-del 4.5 de AA. No lo bajes. Si necesitas algo más apagado que eso, lo que
-necesitas es un elemento decorativo, no texto.
+`--text-dim` es el piso del texto legible: entrega **4.64:1** en pantalla,
+apenas por encima del 4.5 de AA. No lo bajes. Si necesitas algo más apagado
+que eso, lo que necesitas es un elemento decorativo, no texto.
+
+Los contornos (`--line-*`) van sólo con nominal a propósito: WCAG 1.4.11 se
+mide sobre el color especificado, y un borde de 1px no tiene interior que
+medir en píxeles.
 
 ## 3 · Tipografía
 
@@ -94,7 +109,9 @@ hablarlo. Lo que sí es negociable, si algún día molesta, es el nav a
 9.5px en móvil: eso es navegación de verdad, no adorno.
 
 Ojo con la diferencia: **el tamaño es una decisión de marca; el contraste
-no.** Un rótulo de 9px es aceptable aquí. Un rótulo de 9px a 3:1 no.
+no.** Un rótulo de 9px es aceptable aquí. Un rótulo de 9px a 3:1 no. Y el
+tamaño chico agrava lo del render: mientras más fino el trazo, más se lo
+come la textura.
 
 ## 4 · Componentes
 
