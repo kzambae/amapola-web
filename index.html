@@ -12,9 +12,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&display=swap" rel="stylesheet">
+<link rel="preload" href="/assets/fonts/HN33-ThinExt.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/WHTPNYPX.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles.css">
+<noscript><style>.js-reveal{opacity:1;transform:none}</style></noscript>
 </head>
 <body data-splash="on">
+
+  <a class="skip-link" href="#contenido">saltar al contenido</a>
 
   <!-- texture stack -->
   <div class="tex-vhs"></div>
@@ -30,7 +35,7 @@
       <span class="sound-label">SONIDO</span>
     </button>
     <div class="splash-inner">
-      <img class="logo logo--chromatic" src="/assets/logo.webp" alt="amapola">
+      <img class="logo logo--chromatic" src="/assets/logo.webp" alt="amapola" width="1000" height="675">
       <button class="enter-btn" id="enterBtn">E N T R A R</button>
       <p class="splash-consent">Al entrar aceptas nuestra <a href="/privacy">política de privacidad</a></p>
     </div>
@@ -40,7 +45,7 @@
 
     <header class="topbar">
       <a class="brand-mark" href="#top" aria-label="amapola — inicio">
-        <img src="/assets/logo.webp" alt="amapola">
+        <img src="/assets/logo.webp" alt="amapola" width="1000" height="675">
       </a>
       <nav class="topnav">
         <a href="/music">MÚSICA</a>
@@ -56,14 +61,18 @@
       </div>
     </header>
 
+    <main id="contenido">
+
     <section class="hero" id="top">
       <div class="hero-media">
-        <img src="/assets/hero.webp" alt="">
+        <img src="/assets/hero.webp" alt="" width="1920" height="1080" fetchpriority="high">
       </div>
       <div class="hero-tint"></div>
       <div class="scanlines"></div>
       <div class="hero-content">
-        <img class="logo logo--hero logo--chromatic" src="/assets/logo.webp" alt="amapola">
+        <h1 class="hero-title">
+          <img class="logo logo--hero logo--chromatic" src="/assets/logo.webp" alt="amapola" width="1000" height="675">
+        </h1>
         <p class="hero-tag">UN COLECTIVO MUSICAL</p>
       </div>
       <div class="hero-corner hero-corner--l">EST. 2018</div>
@@ -80,7 +89,7 @@
 
       <article class="card js-reveal">
         <div class="card-media">
-          <img src="/assets/puntero-digital.webp" alt="Puntero Digital">
+          <img src="/assets/puntero-digital.webp" alt="Puntero Digital" width="800" height="800" loading="lazy" decoding="async">
           <span class="card-index">Nº 01</span>
           <span class="card-flag">NUEVO</span>
           <div class="card-glitch"></div>
@@ -88,21 +97,21 @@
         </div>
         <div class="card-body">
           <div class="card-meta-row">2026 <span class="sep">/</span> SLRC, MX</div>
-          <h3 class="card-title">puntero digital</h3>
+          <h2 class="card-title">puntero digital</h2>
           <div class="card-tracks">↳ NUEVO LANZAMIENTO</div>
         </div>
       </article>
 
       <article class="card js-reveal">
         <div class="card-media">
-          <img src="/assets/whereubeen.webp" alt="whereubeen?">
+          <img src="/assets/whereubeen.webp" alt="whereubeen?" width="900" height="900" loading="lazy" decoding="async">
           <span class="card-index">Nº 02</span>
           <div class="card-glitch"></div>
           <a class="card-cover-link" href="/release/whereubeen" aria-label="whereubeen?"></a>
         </div>
         <div class="card-body">
           <div class="card-meta-row">LP <span class="sep">/</span> 2026 <span class="sep">/</span> SLRC, MX</div>
-          <h3 class="card-title">whereubeen?</h3>
+          <h2 class="card-title">whereubeen?</h2>
           <div class="card-tracks">↳ ÁLBUM DE LARGA DURACIÓN</div>
           <div class="card-links">
             <a href="https://open.spotify.com/album/632565r6RcVTuAkJDRQpH2" target="_blank" rel="noopener">SPOTIFY</a>
@@ -116,14 +125,14 @@
 
       <article class="card js-reveal">
         <div class="card-media">
-          <img src="/assets/9018.webp" alt="noventadieciocho">
+          <img src="/assets/9018.webp" alt="noventadieciocho" width="900" height="900" loading="lazy" decoding="async">
           <span class="card-index">Nº 03</span>
           <div class="card-glitch"></div>
           <a class="card-cover-link" href="/release/noventadieciocho" aria-label="noventadieciocho"></a>
         </div>
         <div class="card-body">
           <div class="card-meta-row">EP <span class="sep">/</span> 2022 <span class="sep">/</span> SLRC, MX</div>
-          <h3 class="card-title">noventadieciocho</h3>
+          <h2 class="card-title">noventadieciocho</h2>
           <div class="card-tracks">↳ DURACIÓN EXTENDIDA</div>
           <div class="card-links">
             <a href="https://soundcloud.com/amapolamp3/sets/noventadieciocho" target="_blank" rel="noopener">SOUNDCLOUD</a>
@@ -133,14 +142,14 @@
 
       <article class="card js-reveal">
         <div class="card-media">
-          <img src="/assets/svvtchbld.webp" alt="svvtchbld">
+          <img src="/assets/svvtchbld.webp" alt="svvtchbld" width="900" height="900" loading="lazy" decoding="async">
           <span class="card-index">Nº 04</span>
           <div class="card-glitch"></div>
           <a class="card-cover-link" href="/release/svvtchbld" aria-label="svvtchbld"></a>
         </div>
         <div class="card-body">
           <div class="card-meta-row">EP <span class="sep">/</span> 2019 <span class="sep">/</span> SLRC, MX</div>
-          <h3 class="card-title">svvtchbld</h3>
+          <h2 class="card-title">svvtchbld</h2>
           <div class="card-tracks">↳ DURACIÓN EXTENDIDA</div>
           <div class="card-links">
             <a href="https://www.youtube.com/playlist?list=PLlBxHbHklCb0Af8dfH_g1gRUKHFAsKae1" target="_blank" rel="noopener">YOUTUBE</a>
@@ -168,7 +177,7 @@
           <p class="terminal-text">Lanzamientos, visuales, releases del archivo — línea directa. Una vez al mes, nunca más. Sin spam, sin reventa.</p>
           <form class="news-form" id="newsForm">
             <span class="news-form-prompt">&gt;</span>
-            <input type="email" placeholder="TRANSMITIR _" aria-label="Correo electrónico" required>
+            <input type="email" placeholder="TRANSMITIR _" aria-label="Correo electrónico" autocomplete="email" spellcheck="false" required>
             <button type="submit">ENVIAR</button>
           </form>
           <div class="form-status" id="formStatus"></div>
@@ -182,6 +191,8 @@
       <a class="stub js-reveal" href="/archive">ARCHIVO <span>PRONTO</span></a>
       <a class="stub js-reveal" href="/shop">TIENDA <span>PRONTO</span></a>
     </section>
+
+    </main>
 
     <footer class="foot">
       <div class="foot-line">© 2026 AMAPOLA // SAN LUIS RIO COLORADO, SONORA // <a href="/privacy">PRIVACIDAD</a></div>
