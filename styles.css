@@ -845,6 +845,13 @@ body[data-splash="off"] .site { animation: bootFlicker 900ms steps(1, end) 1; }
   min-height: 56vh;
   display: flex; flex-direction: column;
 }
+/* Tienda: el aviso debe leerse cerrado, no como una sección vacía.
+   Fondo al nivel de --bg (más oscuro que el resto de placeholders)
+   con el borde un poco más marcado para que la caja siga distinguiéndose. */
+.soon-terminal--locked {
+  background: var(--bg);
+  border-color: rgba(180,200,180,0.30);
+}
 .soon-terminal .terminal-body {
   flex: 1; justify-content: center; align-items: flex-start; gap: 18px;
 }
